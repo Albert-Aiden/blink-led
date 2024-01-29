@@ -1,0 +1,29 @@
+11:33:51 **** Build of configuration Debug for project Lightdemo ****
+make -j4 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f429zitx.d" -MT"Startup/startup_stm32f429zitx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f429zitx.o" "../Startup/startup_stm32f429zitx.s"
+arm-none-eabi-gcc "../Src/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/Src/main.d" -MT"Src/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/Src/main.o"
+arm-none-eabi-gcc "../Src/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/Src/stm32f4xx_hal_msp.d" -MT"Src/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/Src/stm32f4xx_hal_msp.o"
+arm-none-eabi-gcc "../Src/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/Src/stm32f4xx_it.d" -MT"Src/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/Src/stm32f4xx_it.o"
+In file included from ../Src/Src/stm32f4xx_it.c:21:
+../Inc/main.h:30:10: fatal error: stm32f4xx_hal.h: No such file or directory
+   30 | #include "stm32f4xx_hal.h"
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ../Src/Src/main.c:20:
+../Inc/main.h:30:10: fatal error: stm32f4xx_hal.h: No such file or directory
+   30 | #include "stm32f4xx_hal.h"
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ../Src/Src/stm32f4xx_hal_msp.c:22:
+../Inc/main.h:30:10: fatal error: stm32f4xx_hal.h: No such file or directory
+   30 | #include "stm32f4xx_hal.h"
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Src/Src/subdir.mk:34: Src/Src/stm32f4xx_it.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Src/Src/subdir.mk:34: Src/Src/main.o] Error 1
+make: *** [Src/Src/subdir.mk:34: Src/Src/stm32f4xx_hal_msp.o] Error 1
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+
+11:33:52 Build Failed. 7 errors, 0 warnings. (took 892ms)
+

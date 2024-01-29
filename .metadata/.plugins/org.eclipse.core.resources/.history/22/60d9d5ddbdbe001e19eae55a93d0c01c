@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdint.h>
+
+void Delay_ms(uint16_t time);
+
+
+
+void GPIO_Configuration(void)
+{
+	unsigned long* RCC_AHB1ENR;
+	unsigned long* PORTG_MODER;
+	unsigned long* PORTG_BSRR;
+
+	RCC_AHB1ENR = 0x40023830;
+	*RCC_AHB1ENR |= 0x40;
+	PORTG_MODER = 0x40021800;
+	*PORTG_MODER |= 0x04000000;
+
+};
+
+void Delay_ms(uint16_t time)
+{
+	uint32_t time_n = time*1200;
+	    while (time_n != 0){ time_n--;}
+}
+
+int main (void)
+{
+	GPIO_Configuration();
+
+	unsigned long* PORTG_BSRR = 0x40023818;
+		while(1)
+			{
+				*PORTG_BSRR |= 0x2000;  // bat den
+				Delay_ms(1000);
+				*PORTG_BSRR |= 0X20000000; //tat den
+				Delay_ms(1000);
+			}
+
+}

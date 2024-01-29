@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<stdint.h>
+
+void Delay_ms(uint16_t time);
+
+
+/*
+void GPIO_Configuration(void)
+{
+	unsigned long* RCC_AHB1ENR;
+	unsigned long* PORTG_MODER;
+	unsigned long* PORTG_BSRR;
+
+	RCC_AHB1ENR = 0x40023830;
+	*RCC_AHB1ENR |= 0x40;
+	PORTG_MODER = 0x40021800;
+	*PORTG_MODER |= 0x04000000;
+
+};
+
+void Delay_ms(uint16_t time)
+{
+	uint32_t time_n = time*1200;
+	    while (time_n != 0){ time_n--;}
+}
+
+int main (void)
+{
+	GPIO_Configuration();
+
+	unsigned long* PORTG_BSRR = 0x40023818;
+		while(1)
+			{
+				*PORTG_BSRR |= 0x2000;  // bat den
+				Delay_ms(1000);
+				*PORTG_BSRR |= 0X20000000; //tat den
+				Delay_ms(1000);
+			}
+
+}
+*/
+void GPIO_Configuration(void)
+{
+    volatile uint32_t* RCC_AHB1ENR = (volatile uint32_t*)0x40023830;
+    volatile uint32_t* PORTG_MODER = (volatile uint32_t*)0x40021800;
+
+    *RCC_AHB1ENR |= 0x40;       // Kích hoạt clock cho GPIOG
+    *PORTG_MODER |= 0x04000000; // Cấu hình chân GPIOG_PIN_13 là chân đầu ra
+    volatile uint32_t* PORTG_BSRR = (volatile uint32_t*)0x40023818;
+}
+
+void Delay_ms(uint16_t time)
+{
+	uint32_t time_n = time*1200;
+	    while (time_n != 0){ time_n--;}
+}
+
+int main(void)
+{
+    GPIO_Configuration();
+
+
+
+    while (1)
+    {
+        *PORTG_BSRR |= 0x2000;  // Bật đèn
+        Delay_ms(1000);
+        *PORTG_BSRR |= 0x20000000; // Tắt đèn
+        Delay_ms(1000);
+    }
+}

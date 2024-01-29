@@ -1,0 +1,32 @@
+16:47:45 **** Incremental Build of configuration Debug for project demo_bat_tat_den ****
+make -j4 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+../Src/main.c: In function 'GPIO_Configuration':
+../Src/main.c:104:14: warning: assignment to 'unsigned int *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+  104 | RCC_AHB1_ENB = 0x40023830;
+      |              ^
+../Src/main.c:107:13: warning: assignment to 'unsigned int *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+  107 | GPIOG_MODER = 0x40021800;
+      |             ^
+../Src/main.c:109:11: warning: assignment to 'unsigned int *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+  109 | GPIOG_ODR = 0x40021814;
+      |           ^
+../Src/main.c:111:12: warning: assignment to 'unsigned int *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+  111 | GPIOG_BSRR = 0x40021818;
+      |            ^
+../Src/main.c:102:15: warning: variable 'GPIOG_BSRR' set but not used [-Wunused-but-set-variable]
+  102 | unsigned int* GPIOG_BSRR;
+      |               ^~~~~~~~~~
+../Src/main.c:100:15: warning: unused variable 'GPIOG_PUPDR' [-Wunused-variable]
+  100 | unsigned int* GPIOG_PUPDR;
+      |               ^~~~~~~~~~~
+../Src/main.c: In function 'main':
+../Src/main.c:131:18: error: 'GPIOG_BSRR' undeclared (first use in this function)
+  131 |                  GPIOG_BSRR |= 0x2000;
+      |                  ^~~~~~~~~~
+../Src/main.c:131:18: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+
+16:47:45 Build Failed. 2 errors, 6 warnings. (took 508ms)
+

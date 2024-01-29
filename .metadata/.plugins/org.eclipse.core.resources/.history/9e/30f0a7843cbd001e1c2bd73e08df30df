@@ -1,0 +1,16 @@
+#include "stm32f4xx_hal.h"
+
+void delay(int delay);
+
+int main(void)
+{
+	RCC->AHB1ENR |=1;
+	RCC->AHB1ENR |=40;
+	GPIOG->MODER |= 0x04000000;
+	while(1)
+	{
+		if(GPIOA->IDR&1)
+			GPIOG->BSRR = 0x20000000;
+		else GPIOG->BSRR = 0x2000;
+	}
+}

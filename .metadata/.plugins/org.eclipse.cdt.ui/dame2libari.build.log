@@ -1,0 +1,10 @@
+12:33:00 **** Incremental Build of configuration Debug for project dame2libari ****
+make -j4 all 
+arm-none-eabi-size  dame2libari.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5744	     20	   1572	   7336	   1ca8	dame2libari.elf
+Finished building: default.size.stdout
+ 
+
+12:33:01 Build Finished. 0 errors, 0 warnings. (took 505ms)
+
